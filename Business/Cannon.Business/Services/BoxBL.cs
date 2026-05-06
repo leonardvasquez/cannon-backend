@@ -95,6 +95,9 @@ public class BoxBL : IBoxBL
         if (towel == null || !towel.IsActive)
             throw new InvalidOperationException("El item no existe o no está activo");
 
+        if (towel.Status != TowelStatus.LOOSE)
+            throw new InvalidOperationException("El item no está suelto");
+
         var currentCount = await _boxRepository.GetCurrentCountAsync(boxId);
         if (currentCount >= box.Capacity)
             throw new InvalidOperationException("Capacidad completa");
