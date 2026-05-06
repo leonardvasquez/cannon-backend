@@ -6,29 +6,29 @@ namespace Cannon.API.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
-public class TowelsController : ControllerBase
+public class BoxesController : ControllerBase
 {
-    private readonly ITowelBL _towelBL;
+    private readonly IBoxBL _boxBL;
 
-    public TowelsController(ITowelBL towelBL)
+    public BoxesController(IBoxBL boxBL)
     {
-        _towelBL = towelBL;
+        _boxBL = boxBL;
     }
 
     [HttpGet]
     public async Task<IActionResult> GetAll()
     {
-        var towels = await _towelBL.GetAllActiveAsync();
-        return Ok(towels);
+        var boxes = await _boxBL.GetAllActiveAsync();
+        return Ok(boxes);
     }
 
     [HttpPost]
-    public async Task<IActionResult> Create([FromBody] CreateTowelDto dto)
+    public async Task<IActionResult> Create([FromBody] CreateBoxDto dto)
     {
         try
         {
-            var towel = await _towelBL.CreateAsync(dto);
-            return StatusCode(201, towel);
+            var box = await _boxBL.CreateAsync(dto);
+            return StatusCode(201, box);
         }
         catch (ArgumentException ex)
         {
