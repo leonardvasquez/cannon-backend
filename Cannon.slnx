@@ -1,0 +1,11 @@
+<Solution>
+  <Folder Name="/Business/">
+    <Project Path="Business/Cannon.Business/Cannon.Business.csproj" />
+  </Folder>
+  <Folder Name="/Data/">
+    <Project Path="Data/Cannon.Data/Cannon.Data.csproj" />
+  </Folder>
+  <Folder Name="/Presentation/">
+    <Project Path="Presentation/Cannon.API/Cannon.API.csproj" />
+  </Folder>
+</Solution>
