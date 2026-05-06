@@ -7,5 +7,6 @@ public class Towel
     public string ProductCode { get; set; } = string.Empty;
     public Enums.TowelStatus Status { get; set; }
     public int? BoxId { get; set; }
+    public Box? Box { get; set; }
     public bool IsActive { get; set; } = true;
 }
