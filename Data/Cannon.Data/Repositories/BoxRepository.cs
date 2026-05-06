@@ -6,6 +6,7 @@ namespace Cannon.Data.Repositories;
 public interface IBoxRepository
 {
     Task<List<Box>> GetAllActiveAsync();
+    Task<Box?> GetByIdAsync(int id);
     Task<Box?> GetByBoxCodeAsync(string boxCode);
     Task<int> GetCurrentCountAsync(int boxId);
     Task AddAsync(Box box);
@@ -26,6 +27,12 @@ public class BoxRepository : IBoxRepository
         return await _context.Boxes
             .Where(b => b.IsActive)
             .ToListAsync();
+    }
+
+    public async Task<Box?> GetByIdAsync(int id)
+    {
+        return await _context.Boxes
+            .FirstOrDefaultAsync(b => b.Id == id);
     }
 
     public async Task<Box?> GetByBoxCodeAsync(string boxCode)

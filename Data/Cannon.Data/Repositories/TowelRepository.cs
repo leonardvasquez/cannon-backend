@@ -6,6 +6,7 @@ namespace Cannon.Data.Repositories;
 public interface ITowelRepository
 {
     Task<List<Towel>> GetAllActiveAsync();
+    Task<Towel?> GetByIdAsync(int id);
     Task<Towel?> GetByItemCodeAsync(string itemCode);
     Task AddAsync(Towel towel);
     Task SaveChangesAsync();
@@ -25,6 +26,12 @@ public class TowelRepository : ITowelRepository
         return await _context.Towels
             .Where(t => t.IsActive)
             .ToListAsync();
+    }
+
+    public async Task<Towel?> GetByIdAsync(int id)
+    {
+        return await _context.Towels
+            .FirstOrDefaultAsync(t => t.Id == id);
     }
 
     public async Task<Towel?> GetByItemCodeAsync(string itemCode)

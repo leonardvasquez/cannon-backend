@@ -39,4 +39,18 @@ public class BoxesController : ControllerBase
             return Conflict(new { error = ex.Message });
         }
     }
+
+    [HttpPost("{boxId}/pack")]
+    public async Task<IActionResult> Pack(int boxId, [FromBody] PackDto dto)
+    {
+        try
+        {
+            var towel = await _boxBL.PackAsync(boxId, dto);
+            return Ok(towel);
+        }
+        catch (InvalidOperationException ex)
+        {
+            return BadRequest(new { error = ex.Message });
+        }
+    }
 }
